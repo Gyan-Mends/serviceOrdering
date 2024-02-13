@@ -15,7 +15,7 @@ export default function Nav(){
       <Link to="about" class="a !text-blue-100 hover:!text-white p-2 text-md">Contact</Link>
       <Link to="" class="a !text-blue-100 hover:!text-white p-2 text-md">About</Link>
       <Link to="" class="a !text-blue-100 hover:!text-white p-2 text-md">Services</Link>
-      <Link to="" class="a !text-blue-100 hover:!text-white p-2 text-md">Login</Link>     
+      <Link to="./pages/login" class="a !text-blue-100 hover:!text-white p-2 text-md">Login</Link>     
         <a href="javascript:void(0)" class="icon lg:hidden a -mt-4 text-white" onclick="myFunction()">
         </a>
     </div>
