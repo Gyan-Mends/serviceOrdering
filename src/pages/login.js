@@ -1,115 +1,126 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../css/style.css"
-import { useState } from "react";
-import axios from "axios";
+//importion of react components
+import React, { useState, } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 export default function Login() {
-  //accepting input
-  const[email,setEmail]= useState();
-  const[password, setPassword] = useState();
+  //accepting user input
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, SetRole] = useState("");
 
-  //handling the email inputs
-  const handleEmailChange = (event) =>{
+  //handling the username input
+  const handleEmailChange = event => {
     setEmail(event.target.value);
   }
 
   //handling the password input
-  const handlePasswordChange = (event) =>{
-    setPassword(event.target.value);
+  const handlePasswordChange = event => {
+    setPassword(event.target.value)
   }
 
-  //handling submit
-  const handleSubmit = (event) =>{
-    //prventing the default behavior of the form
-    event.preventDefault();
+  //handling the role input
+  const handleRoleChange = (event) => {
+    SetRole(event.target.value)
+  }
 
-    //making request to the server
-    axios.post("http://localhost/gyan/src/backend/login.php", {
-        email : email,
-        password : password
-    },{
-      headers : {
-        "Content-Type" : "application/json"
+  const handleSubmit = event => {
+    //preventing the default behaviour of the form
+    event.preventDefault()
+
+    axios.post('http://localhost/gyan/src/backend/login.php', {
+      email: email,
+      password: password,
+      role: role
+    }, {
+      headers: {
+        "Content-Type": "application/json"
       }
     }).then(response => {
-      try{
-        //redirecting the admin to admin dashboard
-        if(response.data === "Admin"){
-          
+      try {
+        if (response.data === "admin") {
+          navigate('/dashboard');
+        } else if (response.data === "voter") {
+          navigate("/Voters")
+        } else if (response.data === "candidate") {
+          navigate("/candidate")
+        } else {
+          navigate('/');
+          alert('Invalid election id or password or check your role selection well');
         }
-        //redirecting the service seller to the dashboard
-        else if(response.data === "serviceSeller"){
-          
-        }
-        //redirecting the customer to the dashboard
-        else if (response.data === "Customer"){
-         
-        }else{
-          //statement comes here
-          console.log("invalide")
-        }
-      }catch (error){
-        console.error("Navigation error", error)
+      } catch (error) {
+        console.error('Navigation error:', error);
       }
+
+
     })
   }
 
 
+
   return (
-    <div class=" flex justify-center items-center h-screen bg-gray-800">
-      <div class=" h-[23rem] w-[23rem]  dark:bg-gray-600 lg:border lg:border-gray-500 rounded-md items-center flex  justify-center ">
-        <form >
-          <div class="flex justify-center items-center text-white">
-            <h1 class="text-2xl font-poppins">Login</h1>
+    <div class=" flex items-center justify-center h-[100vh] bg-gray-800">
+      <div class=" mt-10  border border-gray-500 border-[0.5px] rounded-lg p-4 shadow-md" >
+        <form onSubmit={handleSubmit}>
+          <div>
+
+            {/* role input field*/}
+            <label
+              htmlFor="role"
+              class="text-sm md:text-lg text-white font-poppins lg:text-sm "
+            >Role</label><br />
+            <select
+              value={role}
+              onChange={handleRoleChange}
+              class="hover:bg-blue-50 w-80  h-9 outline-none border  border-gray-300 rounded pl-2  shadow-sm"
+              type="text"
+              id="username"
+              required
+            >
+              <option class="text-sm text-gray-500">-- select role--</option>
+              <option class="text-sm text-gray-500">Admin</option>
+              <option class="text-sm text-gray-500">Customer</option>
+              <option class="text-sm text-gray-500">Service Seller</option>
+            </select><br /><br />
           </div>
 
-          {/* email input field */}
-          <label htmlFor="Email" class="text-white text-sm font-Nunito">Email</label><br />
-          <input
-            class="h-8 w-60 rounded outline-none pl-2 text-sm"
-            id="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={handleEmailChange}
-            placeholder="enter email"
-            required
-          /><br /><br/>
-
-          {/* password input field */}
-          <label htmlFor="password" class="text-white text-sm font-Nunito">Password</label><br />
-          <input
-            type="password"
-            class="h-8 w-60 rounded outline-none pl-2 text-sm"
-            id="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="enter password"
-            required
-          /><br />
-
-          {/* forgot pasword */}
-          <div class="text-right pt-1 text-red-500">
-            <Link to=""> <a class="text-sm font-Nunito ">Forgot Password</a></Link>
-          </div><br />
-
-          {/* login button */}
-          <div class=" ">
-            <input class="text-white w-60  bg-blue-500 h-8 rounded" 
-            type="submit" 
-            id="login" 
-            value="Login" 
-            name="submit"
-            onSubmit={handleSubmit}
-            />
+          <div class="">
+            {/* Email input field*/}
+            <label
+              htmlFor="email "
+              class="text-sm md:text-lg text-white"
+            >Email</label><br />
+            <input
+              value={email}
+              onChange={handleEmailChange}
+              class="hover:bg-blue-50 h-9 w-80 lg:ml-2 md:ml-2 outline-none border  border-gray-300 rounded pl-2  shadow-sm"
+              type="text"
+              id="username"
+              required
+            /><br></br>
           </div>
 
-          {/* signup */}
-          <p class="mt-8 text-white text-[13px] font-Nunito">Don't have an account? </p>
-
+          {/* Password input field*/}
+          <div class="mt-4">
+            <label htmlFor="username " class="text-sm md:text-lg text-gray-600 lg:text-sm">Password </label>
+            <input value={password} onChange={handlePasswordChange} class="hover:bg-blue-50 h-8 w-60 lg:ml-2 outline-none md:ml-2 border border-gray-300 rounded pl-2  shadow-sm" type="password" id="username" required /><br></br>
+          </div>
+          {/* Submit button*/}
+          <div>
+            <button class="h-16 w-16 rounded-full border border-blue-200 border-4 text-white  bg-blue-400 !text-lg"></button>
+          </div>
         </form>
+        {/* Link to signup page*/}
+        <p class="text-sm md:text-lg text-gray-600 mt-6 lg:text-sm">
+          Don't have an account? <Link class="text-blue-400" to="/signup">Sign up</Link>
+        </p>
+
+        {/* forgot password */}
+        <p class="text-sm lg:text-sm md:text-lg text-gray-600 mt-4 text-right">
+          <Link class="text-red-500" to="/dashboard">Forgot Password?</Link>
+        </p>
       </div>
     </div>
   )

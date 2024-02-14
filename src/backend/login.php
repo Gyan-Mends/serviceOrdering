@@ -32,11 +32,11 @@ if(is_array($user_row)){
 }
 
 if(isset($user_row["email"]) && $user_row["role"] === "Admin"){
-   echo "Admin";
-}elseif(isset($user_row["email"]) && $user_row["role"] === "serviceSeller"){
-    echo "serviceSeller";
-}elseif(isset($user_row["email"]) && $user_row["role"] === "Customer"){
-    echo "Customer";
+   echo "admin";
+}elseif(isset($user_row["email"]) && $user_row["role"] === "Voter"){
+    echo "voter";
+}elseif(isset($user_row["email"]) && $user_row["role"] === "Candidate"){
+    echo "candidate";
 }else {
     echo"failed";
 }
