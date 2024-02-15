@@ -7,6 +7,7 @@ import "./css/style.css"
 import Home from "./pages/Home"
 import About from './pages/about';
 import Login from './pages/login';
+import AdminDashboard from './pages/admin/dashboard';
 
 export default function App(){
   return (
@@ -15,6 +16,7 @@ export default function App(){
         <Route path='/' element={<Home/>} />
         <Route path='/pages/about' element={<About/>} />
         <Route path='/pages/login' element={<Login/>}></Route>
+        <Route path='/pages/admin/dashboard' element={<AdminDashboard/>}></Route>
       </Routes>
     </BrowserRouter>
   );

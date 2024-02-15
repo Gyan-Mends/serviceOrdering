@@ -15,7 +15,7 @@ $data = json_decode($input, true);
 include("db_connection.php");
 
 //storing input data in a variable
-$username= $data['username'];
+$username= $data['email'];
 $password = $data["password"];
 $role = $data["role"];
 
@@ -28,7 +28,7 @@ $user_select_query = mysqli_query($connection,"SELECT * FROM `logins` WHERE `ema
 $user_row = mysqli_fetch_array($user_select_query);
 
 if(is_array($user_row)){
-    $_SESSION["username"] = $user_row["email"];
+    $_SESSION["email"] = $user_row["email"];
 }
 
 if(isset($user_row["email"]) && $user_row["role"] === "Admin"){

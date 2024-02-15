@@ -41,7 +41,7 @@ export default function Login() {
     }).then(response => {
       try {
         if (response.data === "admin") {
-          navigate('/dashboard');
+          navigate('/admin/dashboard');
         } else if (response.data === "voter") {
           navigate("/Voters")
         } else if (response.data === "candidate") {
@@ -61,9 +61,12 @@ export default function Login() {
 
 
   return (
-    <div class=" flex items-center justify-center h-[100vh] bg-gray-800">
-      <div class=" mt-10  border border-gray-500 border-[0.5px] rounded-lg p-4 shadow-md" >
+    <div class=" flex flex-col items-center justify-center h-[100vh] bg-gray-800">
+      <p>Login</p>
+      <div class=" mt-10  border border-gray-500 w-[430px] h-[430px] flex justify-center items-center border-[0.5px] rounded-lg p-4 shadow-md" >
         <form onSubmit={handleSubmit}>
+
+          
           <div>
 
             {/* role input field*/}
@@ -90,37 +93,52 @@ export default function Login() {
             {/* Email input field*/}
             <label
               htmlFor="email "
-              class="text-sm md:text-lg text-white"
+              class="text-sm font-poppins text-white"
             >Email</label><br />
             <input
               value={email}
               onChange={handleEmailChange}
-              class="hover:bg-blue-50 h-9 w-80 lg:ml-2 md:ml-2 outline-none border  border-gray-300 rounded pl-2  shadow-sm"
+              class="hover:bg-blue-50 h-9 w-80  outline-none border  border-gray-300 rounded pl-2  shadow-sm"
               type="text"
               id="username"
               required
-            /><br></br>
+            /><br/><br/>
           </div>
 
           {/* Password input field*/}
-          <div class="mt-4">
-            <label htmlFor="username " class="text-sm md:text-lg text-gray-600 lg:text-sm">Password </label>
-            <input value={password} onChange={handlePasswordChange} class="hover:bg-blue-50 h-8 w-60 lg:ml-2 outline-none md:ml-2 border border-gray-300 rounded pl-2  shadow-sm" type="password" id="username" required /><br></br>
+          <div class="">
+            <label
+              htmlFor="username "
+              class="text-sm  text-white text-poppins"
+            >Password </label><br/>
+            <input
+              value={password}
+              onChange={handlePasswordChange}
+              class="hover:bg-blue-50 h-9 w-80  outline-none border  border-gray-300 rounded pl-2  shadow-sm"
+              type="password"
+              id="username"
+              required />
           </div>
+
+             {/* Link to signup page*/}
+        <p class="text-sm  text-blue-50 mt-2 lg:text-sm">
+          Don't have an account? <Link class="text-blue-400" to="/signup">Sign up</Link>
+        </p><br/><br/>
+
+
           {/* Submit button*/}
           <div>
-            <button class="h-16 w-16 rounded-full border border-blue-200 border-4 text-white  bg-blue-400 !text-lg"></button>
+            <button 
+              class="h-9 w-80 text-white outline-none bg-blue-600 rounded pl-2  shadow-sm"
+              >LOGIN</button>
           </div>
-        </form>
-        {/* Link to signup page*/}
-        <p class="text-sm md:text-lg text-gray-600 mt-6 lg:text-sm">
-          Don't have an account? <Link class="text-blue-400" to="/signup">Sign up</Link>
-        </p>
 
+        
         {/* forgot password */}
         <p class="text-sm lg:text-sm md:text-lg text-gray-600 mt-4 text-right">
           <Link class="text-red-500" to="/dashboard">Forgot Password?</Link>
         </p>
+        </form>
       </div>
     </div>
   )
