@@ -2,9 +2,15 @@
 import React, { useState, } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import log from "../images/log1.png"
 
 
 export default function Login() {
+  //Login form handling
+  //Login form handling
+  //Login form handling
   //accepting user input
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -58,15 +64,97 @@ export default function Login() {
     })
   }
 
+  //signup form handling
+  //signup form handling
+  //signup form handling
+  //signup form handling
+
+    //accepting sign up inputs
+    const[FirstName, setFirstName] = useState("");
+    const[LastName, setLastName] = useState("");
+    const[Mail, setMail] = useState("");
+    const[Pass, setPass] = useState("");
+    const[ConfirmPassword, setConfirmPassword] = useState("");
+  
+    //handling the input from the input field
+    // first name input handling
+    const handleSignUpFirstNameChange = (event) => {
+      setFirstName(event.target.value)
+    }
+
+    //last name input handling
+    const handleSignUpLastNameChange = (event) => {
+      setLastName(event.target.value)
+    }
+
+    //email input handling
+    const handleSignUpEmailChange = (event) => {
+      setMail(event.target.value)
+    }
+
+    //hanling password input
+    const handleSignUpPasswordChange = (event) => {
+      setPass(event.target.value)
+    }
+
+    //handling confirm password
+    const handleSignUpConfirmPasswordChange = (event) => {
+      setConfirmPassword(event.target.value)
+    }
+
+    //handling submit
+    const handleSignUpSubmit = (event) => {
+      axios.post("http://localhost/gyan/src/backend/login.php",{
+        FirstName:FirstName,
+        LastName:LastName,
+        Mail:Mail,
+        Pass:Pass,
+        ConfirmPassword:ConfirmPassword
+      },{
+        headers:{"Content-Type": "application/json"}
+      }).then(response => {
+        if(Pass === ConfirmPassword){
+          if(response.data = "client"){
+
+          }else{
+            
+          }
+        }else{
+
+        }
+      })
+    }
+
+
 
 
   return (
     <div class="grid grid-cols-2 pt-10 h-[100vh] bg-[#f4f7fa]">
+      {/* other details */}
+      {/* other details */}
+      <div className='flex  justify-center'> 
+      {/* image comes here */}
       <div>
+      <img className='h-80 w-[50vw] -ml-[140px]' src={log} />
+        <div className=' mt-4'>
+            <p className='text-2xl text-center'>Please login to continue</p>
+            <p className='ml-20'>or sign up to join in and download PowerPoint Templates</p>
+            <p className='text-center text-2xl mt-6'>Why create a FREE account?</p>
+            <p className='mt-2 ml-20'>If you do not have an account, you can create a Free Account</p>
+            <p className='text-center'>and order any of our service that we offer</p>
+            <p className='mt-10 text-center'><FontAwesomeIcon className='text-[#007EE5]' icon={faCheck}/> Keep track of your favorite services</p>
+            <p className='mt-2 text-center'><FontAwesomeIcon className='text-[#007EE5]' icon={faCheck}/> Get updated before any one else get</p>
+            <p className='mt-2 text-center'><FontAwesomeIcon className='text-[#007EE5]' icon={faCheck}/> Offering quality services to clients </p>
 
+        </div>
       </div>
+      </div>
+
       <div className='bg-white h-60 shadow-lg rounded-md w-[700px]'>
         <div className="bg-[#007EE5] h-2 rounded-tr-md rounded-tl-md w-100vw"></div>
+        {/* sign forms */}
+        {/* sign forms */}
+        {/* sign forms */}
         <form onSubmit={handleSubmit} className='p-4'>
           <p className='text-lg mb-2'>Existing User </p>
           <div>
@@ -119,7 +207,7 @@ export default function Login() {
             <button
               class="h-9 w-80 text-white outline-none bg-[#007EE5] rounded pl-2  shadow-sm"
             >LOGIN</button>
-            <Link className='text-red-500 text-decoration text-right mr-4' to="">Lost password</Link>
+            <Link className='text-red-400 text-decoration text-right mr-4' to="">Lost password?</Link>
           </div>
 
         </form>
@@ -132,7 +220,7 @@ export default function Login() {
 
         <div className='bg-white  shadow-lg rounded-md w-[700px] mt-20'>          
         <div className="bg-[#007EE5] h-2 rounded-tr-md rounded-tl-md w-100vw"></div>
-        <form className='bg-white  shadow-lg rounded-md w-[700px] p-4 ' onSubmit={handleSubmit} >
+        <form className='bg-white  shadow-lg rounded-md w-[700px] p-4 ' onSubmit={handleSignUpSubmit} >
           <p className='text-lg mb-4'>Create New Account  And <span className='text-[#007ee5]'>Access Our Services</span></p>
           <div>
             {/* role input field*/}
@@ -141,8 +229,8 @@ export default function Login() {
               {/* Email input field*/}
 
               <input
-                value={email}
-                onChange={handleEmailChange}
+                value={FirstName}
+                onChange={handleSignUpFirstNameChange}
                 class="hover:bg-blue-50 h-9 w-80 placeholder:text-sm outline-none border  border-gray-300 rounded pl-2  shadow-sm"
                 type="text"
                 id="username"
@@ -154,10 +242,10 @@ export default function Login() {
             {/* Password input field*/}
             <div class="">
               <input
-                value={password}
-                onChange={handlePasswordChange}
+                value={LastName}
+                onChange={handleSignUpLastNameChange}
                 class="hover:bg-blue-50 h-9 w-80  outline-none border  border-gray-300 rounded pl-2  shadow-sm"
-                type="password"
+                type="text"
                 id="username"
                 placeholder='Last Name'
                 required />
@@ -165,10 +253,10 @@ export default function Login() {
           </div>
 
             <input
-              value={role}
-              onChange={handleRoleChange}
+              value={Mail}
+              onChange={handleSignUpEmailChange}
               class="hover:bg-blue-50 w-[650px]  h-9 outline-none border  border-gray-300 rounded pl-2  shadow-sm"
-              type="text"
+              type="email"
               id="username"
               required
               placeholder='Email'
@@ -181,10 +269,10 @@ export default function Login() {
               {/* Email input field*/}
 
               <input
-                value={email}
-                onChange={handleEmailChange}
+                value={Pass}
+                onChange={handleSignUpPasswordChange}
                 class="hover:bg-blue-50 h-9 w-80  outline-none border  border-gray-300 rounded pl-2  shadow-sm"
-                type="text"
+                type="password"
                 id="username"
                 placeholder='Password'
                 required
@@ -194,8 +282,8 @@ export default function Login() {
             {/* Password input field*/}
             <div class="">
               <input
-                value={password}
-                onChange={handlePasswordChange}
+                value={ConfirmPassword}
+                onChange={handleSignUpConfirmPasswordChange}
                 class="hover:bg-blue-50 h-9 w-80  outline-none border  border-gray-300 rounded pl-2  shadow-sm"
                 type="password"
                 id="username"
@@ -207,8 +295,11 @@ export default function Login() {
           <div className=''>
             <button
               class="h-9 w-80 text-white outline-none bg-[#007EE5] rounded pl-2  shadow-sm"
-            >LOGIN</button>
+            >SIGNUP</button>
           </div>
+
+          <div className='bg-gray-400  h-[1px] w-[42vw] mt-4'></div>
+          <p className='text-sm text-gray-500 mt-2'> By signing up, you agree to our <a href='' className='text-[#007EE5]'>terms and conditions</a></p>
 
         </form>
           
