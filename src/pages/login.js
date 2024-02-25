@@ -104,7 +104,10 @@ export default function Login() {
 
     //handling submit
     const handleSignUpSubmit = (event) => {
-      axios.post("http://localhost/gyan/src/backend/login.php",{
+      //preventing the default behaviour of the form
+      event.preventDefault();
+
+      axios.post("http://localhost/gyan/src/backend/signup.php",{
         FirstName:FirstName,
         LastName:LastName,
         Mail:Mail,
@@ -113,15 +116,22 @@ export default function Login() {
       },{
         headers:{"Content-Type": "application/json"}
       }).then(response => {
-        if(Pass === ConfirmPassword){
-          if(response.data = "client"){
-
-          }else{
-            
+        if (response.data === "Exist") {
+          alert("User with the same email already exists");
+      } else {
+          if (Pass === ConfirmPassword) {
+              if (response.data === "Success") {
+                  alert("User registration successful");
+              } else if (response.data === "LoginInsert") {
+                  alert("User registration successful, and login inserted");
+              } else {
+                  alert("Unable to register user");
+              }
+          } else {
+              alert("Sorry, password does not match");
           }
-        }else{
-
-        }
+      }
+      
       })
     }
 
@@ -130,15 +140,15 @@ export default function Login() {
 
   return (
     <div class="grid grid-cols-2 pt-10 h-[100vh] bg-[#f4f7fa]">
-      {/* other details */}
-      {/* other details */}
+      {/* other login details */}
+      {/* other login  details */}
       <div className='flex  justify-center'> 
       {/* image comes here */}
       <div>
-      <img className='h-80 w-[50vw] -ml-[140px]' src={log} />
+      <img className='h-80 w-[50vw] -ml-[140px]' src={log}  alt='company logo'/>
         <div className=' mt-4'>
             <p className='text-2xl text-center'>Please login to continue</p>
-            <p className='ml-20'>or sign up to join in and download PowerPoint Templates</p>
+            <p className='ml-28'>or sign up to join in and download PowerPoint Templates</p>
             <p className='text-center text-2xl mt-6'>Why create a FREE account?</p>
             <p className='mt-2 ml-20'>If you do not have an account, you can create a Free Account</p>
             <p className='text-center'>and order any of our service that we offer</p>
@@ -299,7 +309,7 @@ export default function Login() {
           </div>
 
           <div className='bg-gray-400  h-[1px] w-[42vw] mt-4'></div>
-          <p className='text-sm text-gray-500 mt-2'> By signing up, you agree to our <a href='' className='text-[#007EE5]'>terms and conditions</a></p>
+          <p className='text-sm text-gray-500 mt-2'> By signing up, you agree to our <Link to="" className='text-[#007EE5]'>terms and conditions</Link></p>
 
         </form>
           
