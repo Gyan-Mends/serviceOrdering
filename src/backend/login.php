@@ -33,8 +33,8 @@ if(is_array($user_row)){
 
 if(isset($user_row["email"]) && $user_row["role"] === "Admin"){
    echo "admin";
-}elseif(isset($user_row["email"]) && $user_row["role"] === "Voter"){
-    echo "voter";
+}elseif(isset($user_row["email"]) && $user_row["role"] === "Service Seller"){
+    echo "Service Seller";
 }elseif(isset($user_row["email"]) && $user_row["role"] === "Candidate"){
     echo "candidate";
 }else {

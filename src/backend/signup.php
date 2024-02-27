@@ -28,29 +28,19 @@ mysqli_stmt_bind_param($select_query, 's', $Mail);
 mysqli_stmt_execute($select_query);
 $result = mysqli_stmt_get_result($select_query);
 
-if (!$result) {
-    echo "Query failed"; // Handle query failure
-} else {
-    if (mysqli_num_rows($result) > 0) {
-        echo "Exist"; // User already exists
+if (mysqli_num_rows($result) > 0) {
+    echo "Exist"; // User already exists
+}  else {
+    // Insert data into the database
+    $insert_query = mysqli_prepare($connection, "INSERT INTO signup (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
+    mysqli_stmt_bind_param($insert_query, 'ssss', $FirstName, $LastName, $Mail, $hashedPassword);
+    
+    if (mysqli_stmt_execute($insert_query)) {
+        echo "Success"; // Insertion successful
     } else {
-        // Insert data into the database
-        $insert_query = mysqli_prepare($connection, "INSERT INTO signup (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
-        mysqli_stmt_bind_param($insert_query, 'ssss', $FirstName, $LastName, $Mail, $hashedPassword);
-        
-        if (mysqli_stmt_execute($insert_query)) {
-              // Insert data into the database
-            $insert_query = mysqli_query($connection, "INSERT INTO logins (email, password) VALUES ( '$Mail', '$hashedPassword')");
-            if($insert_query){
-                echo "LogonInsert";
-            }
-            echo "Success"; // Insertion successful
-        } else {
-            echo "Failed"; // Insertion failed
-        }
+        echo "Failed"; // Insertion failed
     }
 }
-
 // Close prepared statements and database connection
 mysqli_stmt_close($select_query);
 mysqli_stmt_close($insert_query);

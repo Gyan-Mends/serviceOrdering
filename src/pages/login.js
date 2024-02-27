@@ -7,6 +7,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import log from "../images/log1.png"
 
 
+
 export default function Login() {
   //Login form handling
   //Login form handling
@@ -47,14 +48,14 @@ export default function Login() {
     }).then(response => {
       try {
         if (response.data === "admin") {
-          navigate('/dashboard');
-        } else if (response.data === "voter") {
-          navigate("/Voters")
-        } else if (response.data === "candidate") {
+          navigate('/admin');
+        } else if (response.data === "Service Seller") {
+          navigate("/serviceSeller")
+        } else if (response.data === "clients") {
           navigate("/candidate")
         } else {
           navigate('/');
-          alert('Invalid election id or password or check your role selection well');
+          alert('Invalid email or password');
         }
       } catch (error) {
         console.error('Navigation error:', error);
@@ -116,22 +117,22 @@ export default function Login() {
       },{
         headers:{"Content-Type": "application/json"}
       }).then(response => {
-        if (response.data === "Exist") {
-          alert("User with the same email already exists");
-      } else {
-          if (Pass === ConfirmPassword) {
-              if (response.data === "Success") {
-                  alert("User registration successful");
-              } else if (response.data === "LoginInsert") {
-                  alert("User registration successful, and login inserted");
-              } else {
-                  alert("Unable to register user");
-              }
-          } else {
-              alert("Sorry, password does not match");
-          }
-      }
-      
+        //checking if user already exist
+        if(response.data === "Exist"){
+          alert("User with same email already exist");
+        }else{
+          //checking if password is equal to confirmed password
+         if(Pass === ConfirmPassword){
+          //checking for successfull insertion
+            if(response.data ==="Success"){
+              alert("User registeration successful");
+            }else{
+              alert("Unable to register user");
+            }
+         }else{
+          alert("Sorry, password does not match");
+         }
+        }
       })
     }
 
