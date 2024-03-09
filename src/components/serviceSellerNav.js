@@ -84,13 +84,13 @@ export default function ServiceSellerNav() {
       <ul className="ml-10">
         <li className="mt-4">
           <Link to="/dashboard" className="text-gray-400 ">
-            <FontAwesomeIcon icon={fa} /> Report
+           Report
           </Link>
         </li>
 
         <li className="mt-4">
           <Link to="/dashboard" className="text-gray-400 ">
-            <FontAwesomeIcon icon={faUser} /> Profile
+             Profile
           </Link>
         </li>
 

@@ -37,7 +37,7 @@ export default function Login() {
     //preventing the default behaviour of the form
     event.preventDefault()
 
-    axios.post('http://localhost/gyan/src/backend/login.php', {
+    axios.post('http://localhost/serviceOrdering/src/backend/login.php', {
       email: email,
       password: password,
       role: role
@@ -108,7 +108,7 @@ export default function Login() {
       //preventing the default behaviour of the form
       event.preventDefault();
 
-      axios.post("http://localhost/gyan/src/backend/signup.php",{
+      axios.post("http://localhost/serviceOrdering/src/backend/signup.php",{
         FirstName:FirstName,
         LastName:LastName,
         Mail:Mail,
