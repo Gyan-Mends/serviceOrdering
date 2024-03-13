@@ -11,6 +11,7 @@ export default function Nav(){
       <navToggle/>
 
     <div class="topnav lg:!ml-auto register" id="myTopnav">
+      <Link to="/pages/tut" class="a   p-2 text-md">Tuts</Link>
       <Link to="" class="a   p-2 text-md">Home</Link>
       <Link to="about" class="a   p-2 text-md">Contact</Link>
       <Link to="" class="a   p-2 text-md">About</Link>

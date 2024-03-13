@@ -9,16 +9,22 @@ import About from './pages/about';
 import Login from './pages/login';
 import AdminDashboard from './pages/admin/board';
 import ServiceSellerDashboard from './pages/serviceSeller/serviceSellerDashboard';
+import Tut from './pages/tut';
+import Service from './pages/serviceSeller/services.';
+import ServiceAdd from './pages/serviceSeller/serviceAdd';
 
 export default function App(){
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/pages/tut' element={<Tut/>} />
         <Route path='/' element={<Home/>} />
         <Route path='/pages/about' element={<About/>} />
         <Route path='/pages/login' element={<Login/>}></Route>
         <Route path='/admin' element={<AdminDashboard/>}></Route>
         <Route path='/serviceSeller' element={<ServiceSellerDashboard/>}></Route>
+        <Route path='/serviceseller/services' element={<Service/>}></Route>
+        <Route path='/serviceseller/serviceAdd' element={<ServiceAdd/>}></Route>
       </Routes>
     </BrowserRouter>
   );
