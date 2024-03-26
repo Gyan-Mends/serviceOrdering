@@ -6,7 +6,7 @@ export default function Foter(){
     <div>
           {/* <!--footer -->
     <!--footer --> */}
-    <footer class="bg-[#007EE5] text-gray-300 py-8 mt-20 -mr-6 -ml-6 ">
+    <footer class="bg-gray-600 text-gray-300 py-8 mt-20 -mr-6 -ml-6 ">
         <div class="container mx-auto px-10 lg:grid lg:grid-cols-3 md:grid md:grid-cols-3 gap-20">
             <div class="">
                 <h2 class="text-lg mb-4">Contact Us</h2>

@@ -140,7 +140,7 @@ export default function Login() {
 
 
   return (
-    <div class="lg:grid lg:grid-cols-2 lg:gap-10 pl-10  pr-10 lg:h-[100vh] bg-[#f4f7fa]">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-10 pl-10  pr-10 pb-20 bg-gray-800">
       {/* other login details */}
       {/* other login  details */}
       <div className='pt-20'>
@@ -160,20 +160,19 @@ export default function Login() {
         </div>
       </div>
 
-      <div className='bg-white lg:h-60 h-[370px] shadow-lg rounded-md mt-20 lg:w-[46vw]'>
-        <div className="bg-[#007EE5] h-2 rounded-tr-md rounded-tl-md "></div>
+      <div className='bg-gray-600 lg:h-60 h-[370px] shadow-lg rounded-md mt-20 lg:w-[46vw]'>
         {/* sign forms */}
         {/* sign forms */}
         {/* sign forms */}
         <form onSubmit={handleSubmit} className='p-4 '>
-          <p className='text-lg mb-2'>Existing User </p>
+          <p className='text-lg mb-2 text-white'>Existing User </p>
           <div>
             {/* role input field*/}
 
             <select
               value={role}
               onChange={handleRoleChange}
-              class="hover:bg-blue-50 lg:w-[490px] w-60 text-sm  h-9 outline-none border  border-gray-300 rounded pl-2  shadow-sm"
+              class="hover:bg-blue-50 bg-blue-50 lg:w-[535px] w-60 text-sm  h-9 outline-none border  border-gray-300 rounded pl-2  shadow-sm"
               type="text"
               id="username"
               required
@@ -228,10 +227,9 @@ export default function Login() {
         {/* sign up form */}
         {/* sign up form */}
 
-        <div className='bg-white  shadow-lg rounded-md mt-40 lg:mt-20'>
-          <div className="bg-[#007EE5] h-2 rounded-tr-md rounded-tl-md "></div>
-          <form className='bg-white  shadow-lg rounded-md  p-4 ' onSubmit={handleSignUpSubmit} >
-            <p className='text-lg mb-4'>Create New Account  And <span className='text-[#007ee5]'>Access Our Services</span></p>
+        <div className='bg-gray-600  shadow-lg rounded-md mt-40 lg:mt-20'>
+          <form className='bg-gray-600  shadow-lg rounded-md  p-4 ' onSubmit={handleSignUpSubmit} >
+            <p className='text-lg mb-4 text-white'>Create New Account  And <span>Access Our Services</span></p>
             <div>
               {/* role input field*/}
               <div className='grid grid-cols-2'>

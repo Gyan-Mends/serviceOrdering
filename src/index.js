@@ -13,6 +13,7 @@ import ServiceSellerDashboard from './pages/serviceSeller/serviceSellerDashboard
 import Tut from './pages/tut';
 import Service from './pages/serviceSeller/services.';
 import ServiceAdd from './pages/serviceSeller/serviceAdd';
+import Registeration from './pages/registeration';
 
 export default function App(){
   return (
@@ -26,6 +27,7 @@ export default function App(){
         <Route path='/serviceSeller' element={<ServiceSellerDashboard/>}></Route>
         <Route path='/serviceseller/services' element={<Service/>}></Route>
         <Route path='/serviceseller/serviceAdd' element={<ServiceAdd/>}></Route>
+        <Route path='/registeration' element={<Registeration/>}> </Route>
       </Routes>
     </BrowserRouter>
   );
